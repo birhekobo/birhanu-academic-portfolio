@@ -1,0 +1,76 @@
+:root {
+  --pst-color-primary: #2c5f8a;
+  --pst-color-secondary: #d4a843;
+}
+
+body {
+  font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+}
+
+.bd-main .bd-content .bd-article-container {
+  max-width: 50rem;
+}
+
+h1, h2, h3, h4 {
+  font-weight: 600;
+  color: var(--pst-color-primary);
+}
+
+/* Profile photo */
+.rounded img {
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto 1rem;
+  border: 3px solid var(--pst-color-primary);
+}
+
+/* Cards */
+.sd-card {
+  border: 1px solid #dee2e6;
+  border-radius: 0.5rem;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.sd-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.sd-card-title {
+  font-weight: 600;
+}
+
+/* Buttons */
+.sd-btn {
+  border-radius: 0.25rem;
+  font-weight: 600;
+}
+
+/* Epigraph */
+blockquote.epigraph {
+  border-left: 3px solid var(--pst-color-primary);
+  background: #f8f9fa;
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+}
+
+/* List tables */
+.list-table {
+  width: 100%;
+}
+
+.list-table td {
+  padding: 0.5rem;
+}
+
+/* Responsive images */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Footer */
+.bd-footer {
+  font-size: 0.85rem;
+}

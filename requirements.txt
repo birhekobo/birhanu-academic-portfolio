@@ -1,0 +1,9 @@
+sphinx>=7.0
+myst-parser>=3.0
+sphinx-book-theme>=1.1
+sphinx-design>=0.5
+sphinxcontrib-bibtex>=2.6
+sphinxext-opengraph>=0.9
+sphinx-copybutton>=0.5
+sphinx-sitemap>=2.5
+weasyprint>=60
