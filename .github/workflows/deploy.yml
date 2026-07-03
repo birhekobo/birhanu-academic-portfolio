@@ -44,7 +44,7 @@ jobs:
       - name: Generate PDF CV
         continue-on-error: true
         run: |
-          python -c "
+          python << 'PYEOF'
           import os, sys
           try:
               from weasyprint import HTML
@@ -57,7 +57,7 @@ jobs:
               print('PDF CV generated successfully')
           else:
               print('CV not found, skipping PDF generation')
-          "
+          PYEOF
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
