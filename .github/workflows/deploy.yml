@@ -33,7 +33,11 @@ jobs:
           pip install -r requirements.txt
 
       - name: Build HTML site
-        run: python -m sphinx -b html -v docs docs/_build
+        run: |
+          which python3 || true
+          which python || true
+          python3 -m sphinx --version
+          python3 -m sphinx -b html docs docs/_build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
