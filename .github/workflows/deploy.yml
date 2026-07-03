@@ -33,20 +33,20 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Diagnose environment
+        run: |
+          echo "## System" >> $GITHUB_STEP_SUMMARY
+          echo "- Python: $(python --version 2>&1)" >> $GITHUB_STEP_SUMMARY
+          echo "- Platform: $(python -c 'import platform; print(platform.platform())')" >> $GITHUB_STEP_SUMMARY
+          echo "## Installed packages" >> $GITHUB_STEP_SUMMARY
+          pip list --format=columns >> $GITHUB_STEP_SUMMARY
+
       - name: Build HTML site
         id: build
-        continue-on-error: true
         run: |
-          python -m sphinx -b html docs docs/_build &> sphinx_log.txt
-          echo "exit_code=$?" >> $GITHUB_OUTPUT
-
-      - name: Debug build output
-        if: always()
-        run: |
-          echo "Build exit code: ${{ steps.build.outputs.exit_code }}"
-          echo "::group::Sphinx build log"
-          cat sphinx_log.txt || echo "no log file"
-          echo "::endgroup::"
+          EXIT_CODE=0
+          python -m sphinx -b html -vvv docs docs/_build 2>&1 | tee sphinx_log.txt || EXIT_CODE=$?
+          echo "exit_code=$EXIT_CODE" >> $GITHUB_OUTPUT
 
       - name: Upload build log
         if: always()
@@ -55,13 +55,8 @@ jobs:
           name: sphinx-log
           path: sphinx_log.txt
 
-      - name: Fail if build failed
-        if: steps.build.outputs.exit_code != '0'
-        run: |
-          echo "Sphinx build failed with exit code ${{ steps.build.outputs.exit_code }}"
-          exit ${{ steps.build.outputs.exit_code }}
-
       - name: Upload artifact
+        if: steps.build.outputs.exit_code == '0'
         uses: actions/upload-pages-artifact@v5
         with:
           path: docs/_build

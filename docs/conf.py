@@ -92,7 +92,9 @@ suppress_warnings = [
 
 ogp_site_url = "https://birhekobo.github.io/birhanu-academic-portfolio"
 ogp_description_length = 200
-ogp_enable_social_cards = False
+ogp_social_cards = {
+    "enable": False,
+}
 
 html_baseurl = "https://birhekobo.github.io/birhanu-academic-portfolio"
 
