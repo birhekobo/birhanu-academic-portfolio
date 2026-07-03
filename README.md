@@ -32,3 +32,4 @@ docs/
 ## Deployment
 
 Push to `main` — GitHub Actions builds and deploys to GitHub Pages automatically.
+# birhanu-academic-portfolio
